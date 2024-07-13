@@ -1,7 +1,11 @@
-# Hydrogen
-The SciBorgs' base repository.
+# 254-2018-remake
+A remake of FRC 254's (The Cheesy Poofs) 2018 FRC robot
 
-WIP
+## Some links
+
+https://media.team254.com/2018/07/8fda07af-2018-Techbinder.pdf
+
+https://github.com/Team254/FRC-2018-Public
 
 ## Structure
 Our robot code is centered around [Robot.java](src/main/java/org/sciborgs1155/robot/Robot.java)
