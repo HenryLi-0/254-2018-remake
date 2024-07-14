@@ -30,6 +30,10 @@
     },
     "windows": {
       "/Robot/drive/field2d": {
+        "bottom": 370,
+        "builtin": "2018 Power Up",
+        "height": 8.229599952697754,
+        "left": 125,
         "module- FL": {
           "style": "Line"
         },
@@ -42,16 +46,9 @@
         "module-RL": {
           "style": "Line"
         },
-        "window": {
-          "visible": true
-        }
-      },
-      "/SmartDashboard/drive dynamic forward": {
-        "window": {
-          "visible": true
-        }
-      },
-      "/SmartDashboard/drive quasistatic forward": {
+        "right": 827,
+        "top": 20,
+        "width": 16.459199905395508,
         "window": {
           "visible": true
         }
