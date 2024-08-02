@@ -42,13 +42,13 @@ public final class DriveConstants {
           Rotation2d.fromRadians(Math.PI / 2) // rear right
           );
 
-  public static final class Translation {
+  public static final class Translating {
     public static final double P = 0.6;
     public static final double I = 0.0;
     public static final double D = 0.0;
   }
 
-  public static final class Rotation {
+  public static final class Rotating {
     public static final double P = 0.4;
     public static final double I = 0.0;
     public static final double D = 0.0;

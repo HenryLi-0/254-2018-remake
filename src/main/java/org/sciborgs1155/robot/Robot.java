@@ -22,6 +22,7 @@ import org.sciborgs1155.robot.Ports.OI;
 import org.sciborgs1155.robot.commands.Autos;
 import org.sciborgs1155.robot.drive.Drive;
 import org.sciborgs1155.robot.drive.DriveConstants;
+import org.sciborgs1155.robot.elevator.Elevator;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -37,6 +38,7 @@ public class Robot extends CommandRobot implements Logged {
 
   // SUBSYSTEMS
   private final Drive drive = Drive.create();
+  private final Elevator elevator = Elevator.create();
 
   // COMMANDS
   @Log.NT private final Autos autos = new Autos();
@@ -108,5 +110,8 @@ public class Robot extends CommandRobot implements Logged {
         .or(driver.rightBumper())
         .onTrue(Commands.runOnce(() -> speedMultiplier = Constants.FULL_SPEED))
         .onFalse(Commands.run(() -> speedMultiplier = Constants.SLOW_SPEED));
+
+    operator.a().or(operator.b()).onTrue(elevator.setGoal(0));
+    operator.x().or(operator.y()).onTrue(elevator.setGoal(2));
   }
 }

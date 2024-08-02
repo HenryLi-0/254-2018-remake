@@ -166,9 +166,9 @@ public class Drive extends SubsystemBase implements Logged, AutoCloseable {
   public Command drive(InputStream vx, InputStream vy, Supplier<Rotation2d> heading) {
     var pid =
         new ProfiledPIDController(
-            Rotation.P,
-            Rotation.I,
-            Rotation.D,
+            Rotating.P,
+            Rotating.I,
+            Rotating.D,
             new TrapezoidProfile.Constraints(MAX_ANGULAR_SPEED, MAX_ANGULAR_ACCEL));
 
     return run(

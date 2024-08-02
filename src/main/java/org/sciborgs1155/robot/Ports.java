@@ -17,4 +17,11 @@ public final class Ports {
     public static final int FRONT_RIGHT_TURNING = 16;
     public static final int REAR_RIGHT_TURNING = 17;
   }
+
+  public static final class Elevator {
+    public static final int MOTOR_LEFT_TOP = 21;
+    public static final int MOTOR_LEFT_BOTTOM = 22;
+    public static final int MOTOR_RIGHT_TOP = 23;
+    public static final int MOTOR_RIGHT_BOTTOM = 24;
+  }
 }
