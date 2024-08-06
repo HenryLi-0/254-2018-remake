@@ -2,19 +2,21 @@ package org.sciborgs1155.robot.elevator;
 
 import static org.sciborgs1155.robot.Ports.Elevator.*;
 
-import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 public class RealElevator implements ElevatorIO {
-  private final CANcoder lead;
-  private final CANcoder leftBottom;
-  private final CANcoder rightTop;
-  private final CANcoder rightBottom;
+  private final TalonFX lead;
+  private final TalonFX leftBottom;
+  private final TalonFX rightTop;
+  private final TalonFX rightBottom;
 
   public RealElevator() {
-    lead = new CANcoder(MOTOR_LEFT_TOP);
-    leftBottom = new CANcoder(MOTOR_LEFT_BOTTOM);
-    rightTop = new CANcoder(MOTOR_RIGHT_TOP);
-    rightBottom = new CANcoder(MOTOR_RIGHT_BOTTOM);
+    lead = new TalonFX(MOTOR_LEFT_TOP);
+    leftBottom = new TalonFX(MOTOR_LEFT_BOTTOM);
+    rightTop = new TalonFX(MOTOR_RIGHT_TOP);
+    rightBottom = new TalonFX(MOTOR_RIGHT_BOTTOM);
+
+    
   }
 
   @Override
@@ -23,7 +25,9 @@ public class RealElevator implements ElevatorIO {
   }
 
   @Override
-  public void setVoltage(double voltage) {}
+  public void setVoltage(double voltage) {
+
+  }
 
   @Override
   public void close() throws Exception {}
