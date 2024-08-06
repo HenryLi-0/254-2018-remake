@@ -111,7 +111,7 @@ public class Robot extends CommandRobot implements Logged {
         .onTrue(Commands.runOnce(() -> speedMultiplier = Constants.FULL_SPEED))
         .onFalse(Commands.run(() -> speedMultiplier = Constants.SLOW_SPEED));
 
-    operator.a().or(operator.b()).onTrue(elevator.setGoal(0));
-    operator.x().or(operator.y()).onTrue(elevator.setGoal(2));
+    operator.a().or(operator.b()).onTrue(elevator.goToMin());
+    operator.x().or(operator.y()).onTrue(elevator.goToMax());
   }
 }

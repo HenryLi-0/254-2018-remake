@@ -2,7 +2,6 @@ package org.sciborgs1155.robot.elevator;
 
 import static edu.wpi.first.units.Units.Meters;
 
-import edu.wpi.first.units.Angle;
 import edu.wpi.first.units.Distance;
 import edu.wpi.first.units.Measure;
 import edu.wpi.first.units.Units;
@@ -16,9 +15,9 @@ public class ElevatorConstants {
 
   public static final double MOTOR_GEARING = 1 / 42.44;
 
-  public static final Measure<Velocity<Angle>> MAX_VELOCITY = Units.DegreesPerSecond.of(10);
-  public static final Measure<Velocity<Velocity<Angle>>> MAX_ACCELERATION =
-      Units.DegreesPerSecond.per(Units.Seconds).of(15);
+  // from tech binder, high gearing? velocity should be correct, idk about acceleration
+  public static final Measure<Velocity<Distance>> MAX_VELOCITY = Units.MetersPerSecond.of(3.6);
+  public static final Measure<Velocity<Velocity<Distance>>> MAX_ACCELERATION = Units.MetersPerSecondPerSecond.of(1);
 
   public static final double kP = 32.0;
   public static final double kI = 0.0;

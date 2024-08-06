@@ -1,7 +1,11 @@
 package org.sciborgs1155.robot.elevator;
 
 import static org.sciborgs1155.robot.elevator.ElevatorConstants.*;
+import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.Seconds;
+import static org.sciborgs1155.robot.Constants.PERIOD;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -21,7 +25,7 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
           kP, kI, kD, new TrapezoidProfile.Constraints(MAX_VELOCITY, MAX_ACCELERATION));
       
   @Log.NT
-  private final ElevatorFeedforward feedforward = new ElevatorFeedforward(kS, kG, kV, kA);
+  private final ElevatorFeedforward ff = new ElevatorFeedforward(kS, kG, kV, kA);
 
   // Visualizer
   @Log.NT private final ElevatorVisualizer positionVisualizer = new ElevatorVisualizer(new Color8Bit("#ff8000"));
@@ -43,8 +47,16 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
     return runOnce(() -> pid.setGoal(goal));
   }
 
+  public Command goToMin(){
+    return run(() -> update(MIN_HEIGHT.in(Meters)));
+  }
+
+  public Command goToMax(){
+    return run(() -> update(MAX_HEIGHT.in(Meters)));
+  }
+
   @Log.NT
-  public double position() {
+  public double getPosition() {
     return hardware.getPosition();
   }
 
@@ -52,12 +64,26 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
     return pid.atGoal();
   }
 
+  /**
+   * Smoothly move the elevator car to a given position/height.
+   * 
+   * @param theGoal The target height
+   */
+  public void update(double theGoal) {
+    double goal = MathUtil.clamp(theGoal, MIN_HEIGHT.in(Meters), MAX_HEIGHT.in(Meters));
+    var previousSetpoint = pid.getSetpoint();
+    double feedback = pid.calculate(getPosition(), goal);
+    double acceleration = (pid.getSetpoint().velocity - previousSetpoint.velocity)/PERIOD.in(Seconds);
+    double feedforward = ff.calculate(pid.getSetpoint().velocity, acceleration);
+    log("feedback", feedback);
+    log("feedforward", feedforward);
+    hardware.setVoltage(feedback + feedforward);
+  }
+  
   @Override
   public void periodic() {
-    double feedback = pid.calculate(position(), pid.getGoal());
-    hardware.setVoltage(feedback);
     positionVisualizer.setState(hardware.getPosition());
-    setpointVisualizer.setState(pid.getGoal().position);
+    setpointVisualizer.setState(pid.getGoal().position);      
   }
 
   @Override

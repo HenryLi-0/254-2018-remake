@@ -144,7 +144,7 @@
                 0.32156863808631897,
                 1.0
               ],
-              "id": "NT:/Robot/elevator/position"
+              "id": "NT:/Robot/elevator/getPosition"
             }
           ]
         }
