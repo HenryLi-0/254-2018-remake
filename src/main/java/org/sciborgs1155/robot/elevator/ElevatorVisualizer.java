@@ -10,29 +10,28 @@ import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
 import edu.wpi.first.wpilibj.smartdashboard.MechanismRoot2d;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 
-public class ElevatorVisualizer implements Sendable, AutoCloseable{
-    private final Mechanism2d mech;
-    private final MechanismRoot2d root;
-    private final MechanismLigament2d car;
-    
-    public ElevatorVisualizer(Color8Bit color){
-        mech = new Mechanism2d(2, 3);
-        root = mech.getRoot("Elevator", 0,0);
-        car = root.append(new MechanismLigament2d("Car", MIN_HEIGHT.in(Meters), 90, 5, color));
-    }
+public class ElevatorVisualizer implements Sendable, AutoCloseable {
+  private final Mechanism2d mech;
+  private final MechanismRoot2d root;
+  private final MechanismLigament2d car;
 
-    public void setState(double length){
-        car.setLength(length);
-    }
+  public ElevatorVisualizer(Color8Bit color) {
+    mech = new Mechanism2d(2, 3);
+    root = mech.getRoot("Elevator", 0, 0);
+    car = root.append(new MechanismLigament2d("Car", MIN_HEIGHT.in(Meters), 90, 5, color));
+  }
 
-    @Override
-    public void initSendable(SendableBuilder builder) {
-        mech.initSendable(builder);
-    }
+  public void setState(double length) {
+    car.setLength(length);
+  }
 
-    @Override
-    public void close() throws Exception {
-        mech.close();
-    }
+  @Override
+  public void initSendable(SendableBuilder builder) {
+    mech.initSendable(builder);
+  }
 
+  @Override
+  public void close() throws Exception {
+    mech.close();
+  }
 }

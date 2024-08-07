@@ -5,17 +5,15 @@ import static org.sciborgs1155.robot.Ports.Elevator.*;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
-
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 
-
 public class RealElevator implements ElevatorIO {
   private final Solenoid gearShift = new Solenoid(PneumaticsModuleType.CTREPCM, SOLENOID);
-  private final TalonFX lead  = new TalonFX(MOTOR_LEFT_TOP);
-  private final TalonFX leftBottom  = new TalonFX(MOTOR_LEFT_BOTTOM);
-  private final TalonFX rightTop  = new TalonFX(MOTOR_RIGHT_TOP);
-  private final TalonFX rightBottom  = new TalonFX(MOTOR_RIGHT_BOTTOM);
+  private final TalonFX lead = new TalonFX(MOTOR_LEFT_TOP);
+  private final TalonFX leftBottom = new TalonFX(MOTOR_LEFT_BOTTOM);
+  private final TalonFX rightTop = new TalonFX(MOTOR_RIGHT_TOP);
+  private final TalonFX rightBottom = new TalonFX(MOTOR_RIGHT_BOTTOM);
 
   public RealElevator() {
     gearShift.set(false);
@@ -30,7 +28,7 @@ public class RealElevator implements ElevatorIO {
     rightTop.setControl(new Follower(MOTOR_LEFT_TOP, false));
     rightBottom.setControl(new Follower(MOTOR_LEFT_TOP, true));
   }
-  
+
   @Override
   public double getPosition() {
     return lead.getPosition().getValueAsDouble();

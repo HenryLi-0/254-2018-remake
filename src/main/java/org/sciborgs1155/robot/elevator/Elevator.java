@@ -1,9 +1,9 @@
 package org.sciborgs1155.robot.elevator;
 
-import static org.sciborgs1155.robot.elevator.ElevatorConstants.*;
 import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.Seconds;
 import static org.sciborgs1155.robot.Constants.PERIOD;
+import static org.sciborgs1155.robot.elevator.ElevatorConstants.*;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ElevatorFeedforward;
@@ -23,13 +23,17 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
   private final ProfiledPIDController pid =
       new ProfiledPIDController(
           kP, kI, kD, new TrapezoidProfile.Constraints(MAX_VELOCITY, MAX_ACCELERATION));
-      
-  @Log.NT
-  private final ElevatorFeedforward ff = new ElevatorFeedforward(kS, kG, kV, kA);
+
+  @Log.NT private final ElevatorFeedforward ff = new ElevatorFeedforward(kS, kG, kV, kA);
 
   // Visualizer
-  @Log.NT private final ElevatorVisualizer positionVisualizer = new ElevatorVisualizer(new Color8Bit("#ff8000"));
-  @Log.NT private final ElevatorVisualizer setpointVisualizer = new ElevatorVisualizer(new Color8Bit("#ff00ff"));
+  @Log.NT
+  private final ElevatorVisualizer positionVisualizer =
+      new ElevatorVisualizer(new Color8Bit("#ff8000"));
+
+  @Log.NT
+  private final ElevatorVisualizer setpointVisualizer =
+      new ElevatorVisualizer(new Color8Bit("#ff00ff"));
 
   public static Elevator create() {
     return Robot.isReal() ? new Elevator(new RealElevator()) : new Elevator(new SimElevator());
@@ -42,16 +46,16 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
   public Elevator(ElevatorIO elevator) {
     this.hardware = elevator;
   }
-  
+
   public Command setGoal(double goal) {
     return runOnce(() -> pid.setGoal(goal));
   }
 
-  public Command goToMin(){
+  public Command goToMin() {
     return run(() -> update(MIN_HEIGHT.in(Meters)));
   }
 
-  public Command goToMax(){
+  public Command goToMax() {
     return run(() -> update(MAX_HEIGHT.in(Meters)));
   }
 
@@ -66,24 +70,25 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
 
   /**
    * Smoothly move the elevator car to a given position/height.
-   * 
+   *
    * @param theGoal The target height
    */
   public void update(double theGoal) {
     double goal = MathUtil.clamp(theGoal, MIN_HEIGHT.in(Meters), MAX_HEIGHT.in(Meters));
     var previousSetpoint = pid.getSetpoint();
     double feedback = pid.calculate(getPosition(), goal);
-    double acceleration = (pid.getSetpoint().velocity - previousSetpoint.velocity)/PERIOD.in(Seconds);
+    double acceleration =
+        (pid.getSetpoint().velocity - previousSetpoint.velocity) / PERIOD.in(Seconds);
     double feedforward = ff.calculate(pid.getSetpoint().velocity, acceleration);
     log("feedback", feedback);
     log("feedforward", feedforward);
     hardware.setVoltage(feedback + feedforward);
   }
-  
+
   @Override
   public void periodic() {
     positionVisualizer.setState(hardware.getPosition());
-    setpointVisualizer.setState(pid.getGoal().position);      
+    setpointVisualizer.setState(pid.getGoal().position);
   }
 
   @Override
