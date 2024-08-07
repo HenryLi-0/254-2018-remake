@@ -17,4 +17,12 @@ public interface ElevatorIO extends AutoCloseable, Logged {
    * @param voltage The voltage
    */
   public void setVoltage(double voltage);
+
+  /**
+   * Sets the gear shift to a given value
+   * 
+   * @param high Given truth value of whether the desired gear shift is high. As in high gear. Not the other meaning.
+   */
+  public void setGearShift(boolean high);
+  
 }

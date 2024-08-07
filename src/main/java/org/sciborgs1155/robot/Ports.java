@@ -23,5 +23,6 @@ public final class Ports {
     public static final int MOTOR_LEFT_BOTTOM = 22;
     public static final int MOTOR_RIGHT_TOP = 23;
     public static final int MOTOR_RIGHT_BOTTOM = 24;
+    public static final int SOLENOID = 25;
   }
 }

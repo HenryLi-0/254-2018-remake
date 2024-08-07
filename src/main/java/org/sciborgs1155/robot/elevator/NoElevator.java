@@ -11,5 +11,8 @@ public class NoElevator implements ElevatorIO {
   public void setVoltage(double voltage) {}
 
   @Override
+  public void setGearShift(boolean high) {}
+
+  @Override
   public void close() throws Exception {}
 }

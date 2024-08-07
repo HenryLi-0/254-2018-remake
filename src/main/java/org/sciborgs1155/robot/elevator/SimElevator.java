@@ -32,5 +32,10 @@ public class SimElevator implements ElevatorIO {
   }
 
   @Override
+  public void setGearShift(boolean high) {
+    // idk
+  }
+
+  @Override
   public void close() throws Exception {}
 }
