@@ -25,4 +25,9 @@ public final class Ports {
     public static final int MOTOR_RIGHT_BOTTOM = 24;
     public static final int SOLENOID = 25;
   }
+
+  public static final class Forklift {
+    public static final int SOLENOID_L = 31;
+    public static final int SOLENOID_R = 32;
+  }
 }
