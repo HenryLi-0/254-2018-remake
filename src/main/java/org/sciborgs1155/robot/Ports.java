@@ -31,8 +31,13 @@ public final class Ports {
     public static final int SOLENOID_R = 32;
   }
 
+  public static final class Intake {
+    public static final int LEFT_INTAKE = 41;
+    public static final int RIGHT_INTAKE = 42;
+  }
+
   public static final class Wrist {
     public static final int LIMIT_SWITCH = 3;
-
+    public static final int BACK_MOTOR = 43;
   }
 }

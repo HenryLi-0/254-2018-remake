@@ -1,28 +1,26 @@
 package org.sciborgs1155.robot.wrist;
 
-import org.sciborgs1155.robot.Robot;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import monologue.Logged;
+import org.sciborgs1155.robot.Robot;
 
-public class Wrist extends SubsystemBase implements AutoCloseable, Logged{
-    private final WristIO hardware; 
+public class Wrist extends SubsystemBase implements AutoCloseable, Logged {
+  private final WristIO hardware;
 
-    public static Wrist create(){
-        return Robot.isReal() ? new Wrist(new RealWrist()) : new Wrist(new SimWrist());
-    }
+  public static Wrist create() {
+    return Robot.isReal() ? new Wrist(new RealWrist()) : new Wrist(new SimWrist());
+  }
 
-    public static Wrist none(){
-        return new Wrist(new NoWrist());
-    }
+  public static Wrist none() {
+    return new Wrist(new NoWrist());
+  }
 
+  public Wrist(WristIO hardware) {
+    this.hardware = hardware;
+  }
 
-    public Wrist(WristIO hardware){
-        this.hardware = hardware;
-    }
-
-    @Override
-    public void close() throws Exception {
-        hardware.close();
-    }
+  @Override
+  public void close() throws Exception {
+    hardware.close();
+  }
 }
