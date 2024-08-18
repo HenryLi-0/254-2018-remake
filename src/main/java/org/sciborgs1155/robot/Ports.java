@@ -30,4 +30,9 @@ public final class Ports {
     public static final int SOLENOID_L = 31;
     public static final int SOLENOID_R = 32;
   }
+
+  public static final class Wrist {
+    public static final int LIMIT_SWITCH = 3;
+
+  }
 }

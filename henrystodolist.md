@@ -9,9 +9,9 @@ scheduling
     - DONE - real*
     - tests
 - 08/10/2024 - forklift
-    - setup files
-    - sim
-    - real*
+    - DONE - setup files
+    - DONE - sim
+    - DONE - real*
     - tests
 - 08/17/2024 - intake/wrist
     - setup files
