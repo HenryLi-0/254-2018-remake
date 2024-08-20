@@ -3,14 +3,14 @@ package org.sciborgs1155.robot.wrist;
 import monologue.Logged;
 
 public interface WristIO extends AutoCloseable, Logged {
-
-  /***
-   * Extends the wrist.
+  /**
+   * Sets the wrist motor voltage.
    */
-  public void extend();
+  public void setVoltage(double voltage);
 
-  /***
-   * Retracts the wrist.
+  /**
+   * Returns the position.
+   * @return
    */
-  public void retract();
+  public double getPosition();
 }

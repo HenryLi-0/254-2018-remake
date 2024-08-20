@@ -15,12 +15,12 @@ public class RealWrist implements WristIO {
     motor.getConfigurator().apply(configuration);
   }
 
-  public void extend() {
-    // please do
+  public void setVoltage(double voltage) {
+    motor.setVoltage(voltage);
   }
 
-  public void retract() {
-    // please do
+  public double getPosition() {
+    return motor.getPosition().getValueAsDouble();
   }
 
   @Override
