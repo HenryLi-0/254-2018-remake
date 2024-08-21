@@ -28,23 +28,34 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
     return run(() -> {});
   }
 
-  public Command idk() {
+  public Command yellow() {
     return set(singleColor(Color.kYellow));
   }
 
-  public Command idk2() {
+  public Command green() {
     return set(singleColor(Color.kGreen));
   }
 
-  public AddressableLEDBuffer singleColor(Color color) {
-    return genBuffer(i -> color);
-  }
-
+  /**
+   * Returns an AddressableLEDBuffer with leds following instructions of a given function
+   * @param f
+   * @return
+   */
   public static AddressableLEDBuffer genBuffer(Function<Integer, Color> f) {
     AddressableLEDBuffer buffer = new AddressableLEDBuffer(LENGTH);
     buffer.forEach((i, r, g, b) -> buffer.setLED(i, f.apply(i)));
     return buffer;
   }
+
+  /**
+   * Returns an AddressableLEDBuffer of a single given color
+   * @param color
+   * @return
+   */
+  public AddressableLEDBuffer singleColor(Color color) {
+    return genBuffer(i -> color);
+  }
+
 
   @Override
   public void close() throws Exception {
