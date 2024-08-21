@@ -17,7 +17,7 @@ public class SimElevator implements ElevatorIO {
           DCMotor.getVex775Pro(4),
           MIN_HEIGHT.in(Meters),
           MAX_HEIGHT.in(Meters),
-          false,
+          true,
           MIN_HEIGHT.in(Meters));
 
   @Override
