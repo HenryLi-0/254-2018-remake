@@ -23,6 +23,7 @@ import org.sciborgs1155.robot.commands.Autos;
 import org.sciborgs1155.robot.drive.Drive;
 import org.sciborgs1155.robot.drive.DriveConstants;
 import org.sciborgs1155.robot.elevator.Elevator;
+import org.sciborgs1155.robot.leds.LedStrip;
 import org.sciborgs1155.robot.wrist.Wrist;
 
 /**
@@ -41,6 +42,8 @@ public class Robot extends CommandRobot implements Logged {
   private final Drive drive = Drive.create();
   private final Elevator elevator = Elevator.create();
   private final Wrist wrist = Wrist.create();
+
+  private final LedStrip led = new LedStrip();
 
   // COMMANDS
   @Log.NT private final Autos autos = new Autos();
@@ -115,7 +118,7 @@ public class Robot extends CommandRobot implements Logged {
 
     operator.a().onTrue(elevator.goToMin());
     operator.b().onTrue(elevator.goToMax());
-    operator.x().onTrue(wrist.reachOut());
-    operator.y().onTrue(wrist.reachIn());
+    operator.x().onTrue(wrist.reachOut()).whileTrue(led.idk());
+    operator.y().onTrue(wrist.reachIn()).whileTrue(led.idk2());
   }
 }

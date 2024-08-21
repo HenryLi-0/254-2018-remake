@@ -40,4 +40,8 @@ public final class Ports {
     public static final int LIMIT_SWITCH = 3;
     public static final int BACK_MOTOR = 43;
   }
+
+  public static final class Leds {
+    public static final int PORT = 5;
+  }
 }
