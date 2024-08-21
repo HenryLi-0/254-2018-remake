@@ -44,31 +44,18 @@ public class Wrist extends SubsystemBase implements AutoCloseable, Logged {
     this.hardware = hardware;
   }
 
-  /***
-   * Extends the wrist.
-   */
-  public Command extend() {
-    return run(() -> {});
-  }
-
-  /***
-   * Retracts the wrist.
-   */
-  public Command retract() {
-    return run(() -> {});
-  }
 
   @Log.NT
   public double getPosition(){
     return hardware.getPosition();
   }
 
-  public Command reachOut() {
-    return run(() -> update(MAX_ANGLE.in(Radians)));
+  public Command stow() {
+    return run(() -> update(MIN_ANGLE.in(Radians)));
   }
 
-  public Command reachIn() {
-    return run(() -> update(MIN_ANGLE.in(Radians)));
+  public Command extend() {
+    return run(() -> update(MAX_ANGLE.in(Radians)));
   }
 
   /**
@@ -90,8 +77,11 @@ public class Wrist extends SubsystemBase implements AutoCloseable, Logged {
 
   @Override
   public void periodic() {
-      positionVisualizer.setAngle(Units.radiansToDegrees(hardware.getPosition()));
-      setpointVisualizer.setAngle(Units.radiansToDegrees(pid.getGoal().position));
+    if (hardware.limitSwitch()) {
+      hardware.zeroPosition();
+    }
+    positionVisualizer.setAngle(Units.radiansToDegrees(hardware.getPosition()));
+    setpointVisualizer.setAngle(Units.radiansToDegrees(pid.getGoal().position));
   }
 
   @Override

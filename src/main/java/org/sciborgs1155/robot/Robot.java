@@ -118,7 +118,7 @@ public class Robot extends CommandRobot implements Logged {
 
     operator.a().onTrue(elevator.goToMin());
     operator.b().onTrue(elevator.goToMax());
-    operator.x().onTrue(wrist.reachOut()).whileTrue(led.idk());
-    operator.y().onTrue(wrist.reachIn()).whileTrue(led.idk2());
+    operator.x().onTrue(wrist.stow()).whileTrue(led.idk());
+    operator.y().onTrue(wrist.extend()).whileTrue(led.idk2());
   }
 }

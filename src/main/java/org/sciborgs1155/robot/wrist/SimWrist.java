@@ -5,7 +5,6 @@ import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.Seconds;
 import static org.sciborgs1155.robot.wrist.WristConstants.*;
-import static org.sciborgs1155.robot.wrist.WristConstants.MOTOR_GEARING;
 
 import org.sciborgs1155.robot.Constants;
 
@@ -33,6 +32,10 @@ public class SimWrist implements WristIO {
   public double getPosition() {
     return sim.getAngleRads();
   }
+
+  public boolean limitSwitch() {return false;}
+
+  public void zeroPosition() {};
 
   @Override
   public void close() throws Exception {}

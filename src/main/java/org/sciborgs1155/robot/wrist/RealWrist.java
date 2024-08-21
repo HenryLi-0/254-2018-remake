@@ -23,6 +23,14 @@ public class RealWrist implements WristIO {
     return motor.getPosition().getValueAsDouble();
   }
 
+  public boolean limitSwitch() {
+    return limitSwitch.get();
+  }
+
+  public void zeroPosition() {
+    motor.setPosition(0);
+  }
+
   @Override
   public void close() throws Exception {}
 }
