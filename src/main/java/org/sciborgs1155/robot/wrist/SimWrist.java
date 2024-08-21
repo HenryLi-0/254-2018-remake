@@ -6,10 +6,9 @@ import static edu.wpi.first.units.Units.Radians;
 import static edu.wpi.first.units.Units.Seconds;
 import static org.sciborgs1155.robot.wrist.WristConstants.*;
 
-import org.sciborgs1155.robot.Constants;
-
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
+import org.sciborgs1155.robot.Constants;
 
 public class SimWrist implements WristIO {
   private final SingleJointedArmSim sim =
@@ -21,8 +20,7 @@ public class SimWrist implements WristIO {
           MIN_ANGLE.in(Radians),
           MAX_ANGLE.in(Radians),
           true,
-          MIN_ANGLE.in(Radians)
-          );
+          MIN_ANGLE.in(Radians));
 
   public void setVoltage(double voltage) {
     sim.setInputVoltage(voltage);
@@ -33,9 +31,12 @@ public class SimWrist implements WristIO {
     return sim.getAngleRads();
   }
 
-  public boolean limitSwitch() {return false;}
+  public boolean limitSwitch() {
+    return false;
+  }
 
-  public void zeroPosition() {};
+  public void zeroPosition() {}
+  ;
 
   @Override
   public void close() throws Exception {}

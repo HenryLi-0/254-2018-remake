@@ -20,8 +20,9 @@ public class WristConstants {
   public static final Measure<Mass> MASS = Kilograms.of(3);
 
   // note to future self: find constants
-  public static final Measure<Velocity<Distance>> MAX_VELOCITY = MetersPerSecond.of(999); 
-  public static final Measure<Velocity<Velocity<Distance>>> MAX_ACCELERATION = MetersPerSecondPerSecond.of(999); 
+  public static final Measure<Velocity<Distance>> MAX_VELOCITY = MetersPerSecond.of(999);
+  public static final Measure<Velocity<Velocity<Distance>>> MAX_ACCELERATION =
+      MetersPerSecondPerSecond.of(999);
 
   public static final double kP = 32.0;
   public static final double kI = 0.0;

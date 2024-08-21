@@ -25,13 +25,16 @@ public class WristVisualizer implements Sendable, AutoCloseable {
 
   /**
    * Set the angle of the simulated wrist.
+   *
    * @param angle
    */
   public void setAngle(Measure<Angle> angle) {
     wrist.setAngle(angle.in(Degrees));
   }
+
   /**
    * Set the angle of the simulated wrist. (Given in degrees!)
+   *
    * @param degrees
    */
   public void setAngle(double degrees) {
