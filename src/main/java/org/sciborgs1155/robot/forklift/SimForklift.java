@@ -1,16 +1,21 @@
 package org.sciborgs1155.robot.forklift;
 
 public class SimForklift implements ForkliftIO {
+  private boolean piston = false;
 
   @Override
-  public void stow() {}
+  public void stow() {
+    piston = false;
+  }
 
   @Override
-  public void deploy() {}
+  public void deploy() {
+    piston = true;
+  }
 
   @Override
   public boolean deployed() {
-    return true;
+    return piston;
   }
 
   @Override
