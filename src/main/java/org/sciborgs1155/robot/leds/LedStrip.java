@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import java.util.function.Function;
 import monologue.Logged;
 
@@ -44,6 +43,7 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
 
   /**
    * Returns an AddressableLEDBuffer with leds following instructions of a given function
+   *
    * @param f
    * @return
    */
@@ -55,6 +55,7 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
 
   /**
    * Returns an AddressableLEDBuffer of a single given color
+   *
    * @param color A single solid color
    * @return
    */
@@ -64,6 +65,7 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
 
   /**
    * Returns an AddressableLEDBuffer that loops through a list of colors
+   *
    * @param color A list of colors to loop through
    * @return
    */
@@ -71,12 +73,10 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
     return genBuffer(i -> color[(int) (i + Math.round(tick)) % color.length]);
   }
 
-
   @Override
   public void periodic() {
-      tick += SPEED;
+    tick += SPEED;
   }
-
 
   @Override
   public void close() throws Exception {
