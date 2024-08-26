@@ -42,6 +42,19 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
   }
 
   /**
+   * Returns the led hex data of a AddressableLEDBuffer as a  list as a string, python style, without quotations.
+   * (ex. [#ffffff, #ffffff, #ffffff])
+   * 
+   * @return
+   */
+  public static String getLedListString(AddressableLEDBuffer buffer){
+    String list = "[";
+    for (int i = 0; i < buffer.getLength(); i++){
+      list += buffer.getLED(i).toHexString() + ((i == buffer.getLength() - 1) ? "]" : ",");
+    }
+    return list;
+  }
+  /**
    * Returns an AddressableLEDBuffer with leds following instructions of a given function
    *
    * @param f
@@ -59,7 +72,7 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
    * @param color A single solid color
    * @return
    */
-  private AddressableLEDBuffer singleColor(Color color) {
+  public static AddressableLEDBuffer singleColor(Color color) {
     return genBuffer(i -> color);
   }
 
@@ -69,7 +82,7 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
    * @param color A list of colors to loop through
    * @return
    */
-  private AddressableLEDBuffer listColor(Color[] color) {
+  public AddressableLEDBuffer listColor(Color[] color) {
     return genBuffer(i -> color[(int) (i + Math.round(tick)) % color.length]);
   }
 

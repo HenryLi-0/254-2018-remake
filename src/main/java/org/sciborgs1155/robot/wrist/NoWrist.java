@@ -13,7 +13,6 @@ public class NoWrist implements WristIO {
   }
 
   public void zeroPosition() {}
-  ;
 
   @Override
   public void close() throws Exception {}

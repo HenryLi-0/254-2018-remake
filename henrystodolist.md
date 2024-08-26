@@ -18,11 +18,11 @@ scheduling
     - DONE - sim
     - real*
     - tests
-- 08/19/2024 - LEDSSS (essential, very important)
-    - setup files
-    - sim
-    - real*
-    - tests
+- 08/19/2024 - IN PROGRESS - LEDSSS (essential, very important)
+    - DONE - setup files
+    - DONE - sim
+    - DONE - real*
+    - ??? - tests
 - 08/24/2024 - try to finish (unreviewed version)
     - connect everything up
     - tests
