@@ -5,6 +5,8 @@ import static edu.wpi.first.units.Units.Seconds;
 import static org.sciborgs1155.robot.Constants.PERIOD;
 import static org.sciborgs1155.robot.wrist.WristConstants.*;
 
+import java.util.Optional;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -52,11 +54,11 @@ public class Wrist extends SubsystemBase implements AutoCloseable, Logged {
   }
 
   public Command stow() {
-    return run(() -> update(MIN_ANGLE.in(Radians)));
+    return run(() -> update(MIN_ANGLE.in(Radians))).withName("stow");
   }
 
   public Command extend() {
-    return run(() -> update(MAX_ANGLE.in(Radians)));
+    return run(() -> update(MAX_ANGLE.in(Radians))).withName("extend");
   }
 
   /**
@@ -83,6 +85,7 @@ public class Wrist extends SubsystemBase implements AutoCloseable, Logged {
     }
     positionVisualizer.setAngle(Units.radiansToDegrees(hardware.getPosition()));
     setpointVisualizer.setAngle(Units.radiansToDegrees(pid.getGoal().position));
+    log("command", Optional.ofNullable(getCurrentCommand()).map(Command::getName).orElse("none"));
   }
 
   @Override

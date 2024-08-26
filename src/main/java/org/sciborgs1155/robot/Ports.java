@@ -34,6 +34,8 @@ public final class Ports {
   public static final class Intake {
     public static final int LEFT_INTAKE = 41;
     public static final int RIGHT_INTAKE = 42;
+    public static final int LEFT_BEAMBREAK = 6;
+    public static final int RIGHT_BEAMBREAK = 7;
   }
 
   public static final class Wrist {

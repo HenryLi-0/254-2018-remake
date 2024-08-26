@@ -23,6 +23,8 @@ import org.sciborgs1155.robot.commands.Autos;
 import org.sciborgs1155.robot.drive.Drive;
 import org.sciborgs1155.robot.drive.DriveConstants;
 import org.sciborgs1155.robot.elevator.Elevator;
+import org.sciborgs1155.robot.forklift.Forklift;
+import org.sciborgs1155.robot.intake.Intake;
 import org.sciborgs1155.robot.leds.LedStrip;
 import org.sciborgs1155.robot.wrist.Wrist;
 
@@ -41,9 +43,11 @@ public class Robot extends CommandRobot implements Logged {
   // SUBSYSTEMS
   private final Drive drive = Drive.create();
   private final Elevator elevator = Elevator.create();
+  private final Forklift forklift = Forklift.create();
+  private final Intake intake = Intake.create();
+  private final LedStrip led = new LedStrip();
   private final Wrist wrist = Wrist.create();
 
-  private final LedStrip led = new LedStrip();
 
   // COMMANDS
   @Log.NT private final Autos autos = new Autos();
@@ -116,9 +120,9 @@ public class Robot extends CommandRobot implements Logged {
         .onTrue(Commands.runOnce(() -> speedMultiplier = Constants.FULL_SPEED))
         .onFalse(Commands.run(() -> speedMultiplier = Constants.SLOW_SPEED));
 
-    operator.a().onTrue(elevator.goToMin());
-    operator.b().onTrue(elevator.goToMax());
-    operator.x().onTrue(wrist.stow()).onTrue(led.yellow());
-    operator.y().onTrue(wrist.extend()).onTrue(led.bxsci());
+    operator.a().onTrue(elevator.goToMin()).onFalse(elevator.goToMax());
+    operator.b().onTrue(intake.intake()).onFalse(intake.outtake());
+    operator.x().onTrue(wrist.stow().andThen(led.yellow()));
+    operator.y().onTrue(wrist.extend().andThen(led.bxsci()));
   }
 }

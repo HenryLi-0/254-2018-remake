@@ -2,7 +2,7 @@ package org.sciborgs1155.robot.intake;
 
 public class NoIntake implements IntakeIO {
 
-  public void setPower(double power) {}
+  public void setPower(double percent) {}
 
   public boolean hasCube() {
     return true;

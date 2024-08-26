@@ -5,6 +5,8 @@ import static edu.wpi.first.units.Units.Seconds;
 import static org.sciborgs1155.robot.Constants.PERIOD;
 import static org.sciborgs1155.robot.elevator.ElevatorConstants.*;
 
+import java.util.Optional;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -52,11 +54,11 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
   }
 
   public Command goToMin() {
-    return run(() -> update(MIN_HEIGHT.in(Meters)));
+    return run(() -> update(MIN_HEIGHT.in(Meters))).withName("goToMin");
   }
 
   public Command goToMax() {
-    return run(() -> update(MAX_HEIGHT.in(Meters)));
+    return run(() -> update(MAX_HEIGHT.in(Meters))).withName("goToMax");
   }
 
   @Log.NT
@@ -89,6 +91,7 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
   public void periodic() {
     positionVisualizer.setState(hardware.getPosition());
     setpointVisualizer.setState(pid.getGoal().position);
+    log("command", Optional.ofNullable(getCurrentCommand()).map(Command::getName).orElse("none"));
   }
 
   @Override

@@ -1,7 +1,11 @@
 package org.sciborgs1155.robot.forklift;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import monologue.Logged;
+
+import java.util.Optional;
+
 import org.sciborgs1155.robot.Robot;
 
 public class Forklift extends SubsystemBase implements AutoCloseable, Logged {
@@ -22,17 +26,22 @@ public class Forklift extends SubsystemBase implements AutoCloseable, Logged {
   /***
    * Stows the forklift.
    */
-  public void stow() {
-    hardware.stow();
+  public Command stow() {
+    return run(() -> hardware.stow()).withName("stow");
   }
 
   /***
    * Deploys the forklift.
    */
-  public void deploy() {
-    hardware.deploy();
+  public Command deploy() {
+    return run(() -> hardware.deploy()).withName("deploy");
   }
 
+  @Override
+  public void periodic() {
+      log("command", Optional.ofNullable(getCurrentCommand()).map(Command::getName).orElse("none"));
+  }
+  
   @Override
   public void close() throws Exception {
     hardware.close();

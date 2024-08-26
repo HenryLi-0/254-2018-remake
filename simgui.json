@@ -116,7 +116,6 @@
           }
         },
         "elevator": {
-          "open": true,
           "pid": {
             "open": true
           },
@@ -127,13 +126,10 @@
             "open": true
           }
         },
-        "open": true,
-        "wrist": {
-          "open": true,
-          "pid": {
-            "open": true
-          }
-        }
+        "intake": {
+          "open": true
+        },
+        "open": true
       },
       "Shuffleboard": {
         "open": true

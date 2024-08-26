@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import java.util.Optional;
 import java.util.function.Function;
 import monologue.Logged;
 
@@ -30,15 +32,15 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
   }
 
   public Command yellow() {
-    return set(singleColor(Color.kYellow));
+    return set(singleColor(Color.kYellow)).withName("yellow");
   }
 
   public Command green() {
-    return set(singleColor(Color.kGreen));
+    return set(singleColor(Color.kGreen)).withName("green");
   }
 
   public Command bxsci() {
-    return run(() -> led.setData(listColor(BXSCI_COLORS)));
+    return run(() -> led.setData(listColor(BXSCI_COLORS))).withName("bxsci");
   }
 
   /**
@@ -89,6 +91,7 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
   @Override
   public void periodic() {
     tick += SPEED;
+    log("command", Optional.ofNullable(getCurrentCommand()).map(Command::getName).orElse("none"));
   }
 
   @Override
