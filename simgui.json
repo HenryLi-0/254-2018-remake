@@ -44,6 +44,11 @@
       "/SmartDashboard/turn quasistatic forward": "Command"
     },
     "windows": {
+      "/Robot/autos": {
+        "window": {
+          "visible": true
+        }
+      },
       "/Robot/drive/field2d": {
         "bottom": 370,
         "builtin": "2018 Power Up",
