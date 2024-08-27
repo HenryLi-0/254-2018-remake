@@ -42,6 +42,10 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
     return run(() -> led.setData(listColor(BXSCI_COLORS))).withName("bxsci");
   }
 
+  public Command github() {
+    return run(() -> led.setData(listColor(GITHUB_COLORS))).withName("github");
+  }
+
   /**
    * Returns the led hex data of a AddressableLEDBuffer as a list as a string, python style, without
    * quotations. (ex. [#ffffff, #ffffff, #ffffff])
@@ -86,6 +90,16 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
    */
   public AddressableLEDBuffer listColor(Color[] color) {
     return genBuffer(i -> color[(int) (i + Math.round(tick)) % color.length]);
+  }
+
+  /**
+   * Returns an AddressableLEDBuffer of colors picked from the given list of colors
+   *
+   * @param color A list of colors to pick from
+   * @return
+   */
+  public AddressableLEDBuffer listRandomColor(Color[] color) {
+    return genBuffer(i -> color[(int) Math.round(Math.random() * color.length) % color.length]);
   }
 
   @Override

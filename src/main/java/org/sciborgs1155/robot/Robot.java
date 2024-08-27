@@ -123,13 +123,12 @@ public class Robot extends CommandRobot implements Logged {
         .onTrue(Commands.runOnce(() -> speedMultiplier = Constants.FULL_SPEED))
         .onFalse(Commands.run(() -> speedMultiplier = Constants.SLOW_SPEED));
 
-    operator.y().onTrue(elevator.goToMin());
-    operator.a().whileFalse(elevator.goToMax());
+    operator.y().onTrue(elevator.goToMin().alongWith(wrist.extend()).alongWith(intake.intake()));
+    operator.a().onTrue(wrist.stow().alongWith(elevator.goToMax()).alongWith(led.github()));
     operator.leftBumper().whileTrue(intake.intake());
     operator.rightBumper().whileTrue(intake.outtake());
 
     operator.x().onTrue(wrist.stow());
     operator.b().onTrue(wrist.extend());
-
   }
 }

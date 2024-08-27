@@ -12,5 +12,21 @@ public class LedConstants {
     Color.kLimeGreen,
     Color.kGreenYellow
   };
+  public static final Color[] GITHUB_COLORS = {
+    Color.kBlack,
+    Color.kSeaGreen,
+    Color.kSeaGreen,
+    Color.kBlack,
+    Color.kGreen,
+    Color.kBlack,
+    Color.kDarkGreen,
+    Color.kGreen,
+    Color.kBlack,
+    Color.kBlack,
+    Color.kSeaGreen,
+    Color.kGreen,
+    Color.kGreen,
+    Color.kDarkGreen
+  };
   public static final double SPEED = 0.25;
 }
