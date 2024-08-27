@@ -4,6 +4,11 @@
       "visible": false
     }
   },
+  "Keyboard 0 Settings": {
+    "window": {
+      "visible": true
+    }
+  },
   "System Joysticks": {
     "window": {
       "visible": false
@@ -45,7 +50,9 @@
         90,
         88,
         67,
-        86
+        86,
+        85,
+        79
       ],
       "povConfig": [
         {
@@ -109,7 +116,6 @@
     }
   ],
   "robotJoysticks": [
-    {},
     {
       "guid": "Keyboard0"
     }

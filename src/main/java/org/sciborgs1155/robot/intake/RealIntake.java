@@ -6,6 +6,7 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj.DigitalInput;
+import monologue.Annotations.Log;
 
 public class RealIntake implements IntakeIO {
   private final TalonFX lead = new TalonFX(LEFT_INTAKE);
@@ -25,6 +26,7 @@ public class RealIntake implements IntakeIO {
     lead.set(percent);
   }
 
+  @Log.NT
   public boolean hasCube() {
     return leftBeambreak.get() || rightBeambreak.get();
   }

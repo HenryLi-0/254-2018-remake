@@ -127,6 +127,9 @@
           }
         },
         "intake": {
+          "hardware": {
+            "open": true
+          },
           "open": true
         },
         "open": true

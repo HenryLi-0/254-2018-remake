@@ -24,7 +24,7 @@ public class Intake extends SubsystemBase implements AutoCloseable, Logged {
   }
 
   public Command intake() {
-    return run(() -> hardware.setPower(INTAKE_POWER)).withName("intake");
+    return run(() -> hardware.setPower(INTAKE_POWER)).until(hardware::hasCube).withName("intake");
   }
 
   public Command outtake() {
