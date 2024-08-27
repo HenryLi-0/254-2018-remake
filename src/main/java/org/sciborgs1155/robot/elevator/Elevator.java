@@ -5,8 +5,6 @@ import static edu.wpi.first.units.Units.Seconds;
 import static org.sciborgs1155.robot.Constants.PERIOD;
 import static org.sciborgs1155.robot.elevator.ElevatorConstants.*;
 
-import java.util.Optional;
-
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -14,8 +12,11 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import java.util.Optional;
+import java.util.function.DoubleSupplier;
 import monologue.Annotations.Log;
 import monologue.Logged;
+import org.sciborgs1155.lib.InputStream;
 import org.sciborgs1155.robot.Robot;
 
 public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
@@ -59,6 +60,29 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
 
   public Command goToMax() {
     return run(() -> update(MAX_HEIGHT.in(Meters))).withName("goToMax");
+  }
+
+  public Command goToPercent(DoubleSupplier percent) {
+    return run(() ->
+            update(
+                MathUtil.clamp(
+                    MIN_HEIGHT.in(Meters)
+                        + percent.getAsDouble() * (MAX_HEIGHT.in(Meters) - MIN_HEIGHT.in(Meters)),
+                    MIN_HEIGHT.in(Meters),
+                    MAX_HEIGHT.in(Meters))))
+        .withName("goToPercent");
+  }
+
+  public Command changeGoal(InputStream change) {
+    return run(
+        () -> {
+          pid.setGoal(
+              MathUtil.clamp(
+                  pid.getGoal().position + change.get(),
+                  MIN_HEIGHT.in(Meters),
+                  MAX_HEIGHT.in(Meters)));
+          update(pid.getGoal().position);
+        });
   }
 
   @Log.NT

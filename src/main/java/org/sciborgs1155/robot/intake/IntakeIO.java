@@ -1,7 +1,7 @@
 package org.sciborgs1155.robot.intake;
 
-import monologue.Logged;
 import monologue.Annotations.Log;
+import monologue.Logged;
 
 public interface IntakeIO extends AutoCloseable, Logged {
 

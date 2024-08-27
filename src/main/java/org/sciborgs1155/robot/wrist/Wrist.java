@@ -5,8 +5,6 @@ import static edu.wpi.first.units.Units.Seconds;
 import static org.sciborgs1155.robot.Constants.PERIOD;
 import static org.sciborgs1155.robot.wrist.WristConstants.*;
 
-import java.util.Optional;
-
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -15,6 +13,7 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import java.util.Optional;
 import monologue.Annotations.Log;
 import monologue.Logged;
 import org.sciborgs1155.robot.Robot;

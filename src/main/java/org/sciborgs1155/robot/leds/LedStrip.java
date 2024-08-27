@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import java.util.Optional;
 import java.util.function.Function;
 import monologue.Logged;
@@ -44,18 +43,19 @@ public class LedStrip extends SubsystemBase implements AutoCloseable, Logged {
   }
 
   /**
-   * Returns the led hex data of a AddressableLEDBuffer as a  list as a string, python style, without quotations.
-   * (ex. [#ffffff, #ffffff, #ffffff])
-   * 
+   * Returns the led hex data of a AddressableLEDBuffer as a list as a string, python style, without
+   * quotations. (ex. [#ffffff, #ffffff, #ffffff])
+   *
    * @return
    */
-  public static String getLedListString(AddressableLEDBuffer buffer){
+  public static String getLedListString(AddressableLEDBuffer buffer) {
     String list = "[";
-    for (int i = 0; i < buffer.getLength(); i++){
+    for (int i = 0; i < buffer.getLength(); i++) {
       list += buffer.getLED(i).toHexString() + ((i == buffer.getLength() - 1) ? "]" : ",");
     }
     return list;
   }
+
   /**
    * Returns an AddressableLEDBuffer with leds following instructions of a given function
    *

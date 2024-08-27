@@ -5,6 +5,7 @@ import static edu.wpi.first.units.Units.MetersPerSecondPerSecond;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.Second;
 import static edu.wpi.first.wpilibj2.command.button.RobotModeTriggers.*;
+import static org.sciborgs1155.robot.Constants.DEADBAND;
 
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -47,7 +48,6 @@ public class Robot extends CommandRobot implements Logged {
   private final Intake intake = Intake.create();
   private final LedStrip led = new LedStrip();
   private final Wrist wrist = Wrist.create();
-
 
   // COMMANDS
   @Log.NT private final Autos autos = new Autos();
@@ -107,6 +107,9 @@ public class Robot extends CommandRobot implements Logged {
                 driver::getRightX,
                 DriveConstants.MAX_ANGULAR_SPEED.in(RadiansPerSecond),
                 DriveConstants.MAX_ANGULAR_ACCEL.in(RadiansPerSecond.per(Second)))));
+    led.setDefaultCommand(led.bxsci());
+    elevator.setDefaultCommand(
+        elevator.changeGoal(InputStream.of(driver::getRightY).deadband(DEADBAND, 1).scale(0.3)));
   }
 
   /** Configures trigger -> command bindings */
@@ -120,9 +123,9 @@ public class Robot extends CommandRobot implements Logged {
         .onTrue(Commands.runOnce(() -> speedMultiplier = Constants.FULL_SPEED))
         .onFalse(Commands.run(() -> speedMultiplier = Constants.SLOW_SPEED));
 
-    operator.a().onTrue(elevator.goToMin()).onFalse(elevator.goToMax());
-    operator.b().onTrue(intake.intake()).onFalse(intake.outtake());
-    operator.x().onTrue(wrist.stow().andThen(led.yellow()));
-    operator.y().onTrue(wrist.extend().andThen(led.bxsci()));
+    operator.a().whileTrue(elevator.goToMin()).whileFalse(elevator.goToMax());
+    operator.b().whileTrue(intake.intake()).whileFalse(intake.outtake());
+    operator.x().whileTrue(wrist.stow().alongWith(led.yellow()));
+    operator.y().whileTrue(wrist.extend().alongWith(led.green()));
   }
 }
