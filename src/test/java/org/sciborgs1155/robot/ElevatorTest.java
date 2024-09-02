@@ -9,6 +9,8 @@ import static org.sciborgs1155.robot.elevator.ElevatorConstants.MIN_HEIGHT;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.sciborgs1155.robot.elevator.Elevator;
 
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -29,6 +31,14 @@ public class ElevatorTest {
         run(elevator.goToMin());
         fastForward();
         assertEquals(MIN_HEIGHT.in(Meters),elevator.getPosition(),0.1);
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {0, 0.25, 0.5, 0.75, 1})
+    public void testPercent(double p){
+        run(elevator.goToPercent(() -> p));
+        fastForward();
+        assertEquals(MIN_HEIGHT.in(Meters) + p * (MAX_HEIGHT.in(Meters) - MIN_HEIGHT.in(Meters)), elevator.getPosition(), 0.1);
     }
 
     @AfterEach

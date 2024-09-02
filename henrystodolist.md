@@ -7,17 +7,17 @@ scheduling
     - DONE - setup files
     - DONE - sim
     - DONE - real*
-    - tests
+    - ??? - tests
 - 08/10/2024 - IN PROGRESS - forklift
     - DONE - setup files
     - DONE - sim
     - DONE - real*
-    - tests
+    - ??? - tests
 - 08/17/2024 - IN PROGRESS - intake/wrist
     - DONE - setup files
     - DONE - sim
     - real*
-    - tests
+    - ??? - tests
 - 08/19/2024 - IN PROGRESS - LEDSSS (essential, very important)
     - DONE - setup files
     - DONE - sim
