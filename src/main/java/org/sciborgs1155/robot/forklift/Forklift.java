@@ -35,6 +35,13 @@ public class Forklift extends SubsystemBase implements AutoCloseable, Logged {
     return run(() -> hardware.deploy()).withName("deploy");
   }
 
+  /***
+   * Returns whether it is deployed or not. 
+   */
+  public boolean getDeployed(){
+    return hardware.deployed();
+  }
+
   @Override
   public void periodic() {
     log("command", Optional.ofNullable(getCurrentCommand()).map(Command::getName).orElse("none"));

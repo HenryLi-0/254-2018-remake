@@ -10,7 +10,7 @@ public class NoForklift implements ForkliftIO {
 
   @Override
   public boolean deployed() {
-    return true;
+    return false;
   }
 
   @Override
