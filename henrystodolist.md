@@ -2,27 +2,27 @@
 
 scheduling
 
-- 07/27/2024 - DONE - fork hydrogen and update anything
+- 07/27/2024 - done - fork hydrogen and update anything
 - 08/03/2024 - probably ok - elevator
-    - DONE - setup files
-    - DONE - sim
-    - DONE - real*
-    - DONE - tests
+    - done - setup files
+    - done - sim
+    - done - real*
+    - done - tests
 - 08/10/2024 - probably ok - forklift
-    - DONE - setup files
-    - DONE - sim
-    - DONE - real*
-    - DONE - tests
-- 08/17/2024 - IN PROGRESS - intake/wrist
-    - DONE - setup files
-    - DONE - sim
-    - real*
-    - ??? - tests
+    - done - setup files
+    - done - sim
+    - done - real*
+    - done - tests
+- 08/17/2024 - probably ok - intake/wrist
+    - done - setup files
+    - done - sim
+    - done?-real*
+    - done - tests
 - 08/19/2024 - probably ok - LEDSSS (essential, very important)
-    - DONE - setup files
-    - DONE - sim
-    - DONE - real*
-    - DONE - tests
+    - done - setup files
+    - done - sim
+    - done - real*
+    - done - tests
 - 08/24/2024 - try to finish (unreviewed version)
     - connect everything up
     - tests
