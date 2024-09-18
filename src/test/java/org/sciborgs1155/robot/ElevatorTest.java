@@ -6,6 +6,7 @@ import static org.sciborgs1155.lib.TestingUtil.*;
 import static org.sciborgs1155.robot.elevator.ElevatorConstants.MAX_HEIGHT;
 import static org.sciborgs1155.robot.elevator.ElevatorConstants.MIN_HEIGHT;
 
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,38 +14,39 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.sciborgs1155.robot.elevator.Elevator;
 
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
 public class ElevatorTest {
-    Elevator elevator;
+  Elevator elevator;
 
-    @BeforeEach
-    public void setup(){
-        elevator = Elevator.create();   
-    }
+  @BeforeEach
+  public void setup() {
+    elevator = Elevator.create();
+  }
 
-    @Test
-    public void testMinMax(){
-        run(elevator.goToMax());
-        fastForward();
-        assertEquals(MAX_HEIGHT.in(Meters),elevator.getPosition(),0.1);
-        run(elevator.goToMin());
-        fastForward();
-        assertEquals(MIN_HEIGHT.in(Meters),elevator.getPosition(),0.1);
-    }
+  @Test
+  public void testMinMax() {
+    run(elevator.goToMax());
+    fastForward();
+    assertEquals(MAX_HEIGHT.in(Meters), elevator.getPosition(), 0.1);
+    run(elevator.goToMin());
+    fastForward();
+    assertEquals(MIN_HEIGHT.in(Meters), elevator.getPosition(), 0.1);
+  }
 
-    @ParameterizedTest
-    @ValueSource(doubles = {0, 0.25, 0.5, 0.75, 1})
-    public void testPercent(double p){
-        run(elevator.goToPercent(() -> p));
-        fastForward();
-        assertEquals(MIN_HEIGHT.in(Meters) + p * (MAX_HEIGHT.in(Meters) - MIN_HEIGHT.in(Meters)), elevator.getPosition(), 0.1);
-    }
+  @ParameterizedTest
+  @ValueSource(doubles = {0, 0.25, 0.5, 0.75, 1})
+  public void testPercent(double p) {
+    run(elevator.goToPercent(() -> p));
+    fastForward();
+    assertEquals(
+        MIN_HEIGHT.in(Meters) + p * (MAX_HEIGHT.in(Meters) - MIN_HEIGHT.in(Meters)),
+        elevator.getPosition(),
+        0.1);
+  }
 
-    @AfterEach
-    public void afterEach() throws Exception {
-        CommandScheduler.getInstance().unregisterAllSubsystems();
-        CommandScheduler.getInstance().cancelAll();
-        elevator.close();
-    }
+  @AfterEach
+  public void afterEach() throws Exception {
+    CommandScheduler.getInstance().unregisterAllSubsystems();
+    CommandScheduler.getInstance().cancelAll();
+    elevator.close();
+  }
 }

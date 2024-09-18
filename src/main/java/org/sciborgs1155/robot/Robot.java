@@ -130,5 +130,8 @@ public class Robot extends CommandRobot implements Logged {
 
     operator.x().onTrue(wrist.stow());
     operator.b().onTrue(wrist.extend());
+
+    driver.leftBumper().onTrue(forklift.stow());
+    driver.rightBumper().onTrue(forklift.deploy());
   }
 }

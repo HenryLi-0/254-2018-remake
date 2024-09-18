@@ -36,9 +36,9 @@ public class Forklift extends SubsystemBase implements AutoCloseable, Logged {
   }
 
   /***
-   * Returns whether it is deployed or not. 
+   * Returns whether it is deployed or not.
    */
-  public boolean getDeployed(){
+  public boolean getDeployed() {
     return hardware.deployed();
   }
 
