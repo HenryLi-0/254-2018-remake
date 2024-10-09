@@ -1,10 +1,10 @@
 package org.sciborgs1155.robot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.sciborgs1155.lib.TestingUtil.closeSubsystem;
 import static org.sciborgs1155.lib.TestingUtil.fastForward;
 import static org.sciborgs1155.lib.TestingUtil.run;
 
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,8 +30,6 @@ public class ForkliftTest {
 
   @AfterEach
   public void afterEach() throws Exception {
-    CommandScheduler.getInstance().unregisterAllSubsystems();
-    CommandScheduler.getInstance().cancelAll();
-    forklift.close();
+    closeSubsystem(forklift);
   }
 }
