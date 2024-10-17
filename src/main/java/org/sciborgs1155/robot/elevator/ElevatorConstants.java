@@ -20,8 +20,8 @@ public class ElevatorConstants {
   public static final Measure<Velocity<Velocity<Distance>>> MAX_ACCELERATION =
       Units.MetersPerSecondPerSecond.of(3);
 
-  public static final double kP = 512.0; // hmm...
-  public static final double kI = 0.0;
+  public static final double kP = 256.0; // hmm...
+  public static final double kI = 32.0;
   public static final double kD = 64.0; // hmm...
 
   public static final double kS = 0.0;

@@ -2,6 +2,7 @@ package org.sciborgs1155.robot.elevator;
 
 import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.Seconds;
+import static edu.wpi.first.units.Units.Volts;
 import static org.sciborgs1155.robot.Constants.PERIOD;
 import static org.sciborgs1155.robot.elevator.ElevatorConstants.*;
 
@@ -12,6 +13,8 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+
 import java.util.Optional;
 import java.util.function.DoubleSupplier;
 import monologue.Annotations.Log;
@@ -21,6 +24,7 @@ import org.sciborgs1155.robot.Robot;
 
 public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
   private final ElevatorIO hardware;
+  private final SysIdRoutine sysIdRoutine;
 
   @Log.NT
   private final ProfiledPIDController pid =
@@ -48,6 +52,7 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
 
   public Elevator(ElevatorIO elevator) {
     this.hardware = elevator;
+    sysIdRoutine = new SysIdRoutine(new SysIdRoutine.Config(Volts.per(Seconds).of(1)), new SysIdRoutine.Mechanism(null, null, null))
   }
 
   public Command setGoal(double goal) {
@@ -110,6 +115,8 @@ public class Elevator extends SubsystemBase implements AutoCloseable, Logged {
     log("feedforward", feedforward);
     hardware.setVoltage(feedback + feedforward);
   }
+
+
 
   @Override
   public void periodic() {

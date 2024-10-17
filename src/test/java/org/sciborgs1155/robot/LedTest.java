@@ -1,9 +1,9 @@
 package org.sciborgs1155.robot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.sciborgs1155.lib.TestingUtil.closeSubsystem;
 
 import edu.wpi.first.wpilibj.util.Color;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,8 +31,6 @@ public class LedTest {
 
   @AfterEach
   public void afterEach() throws Exception {
-    CommandScheduler.getInstance().unregisterAllSubsystems();
-    CommandScheduler.getInstance().cancelAll();
-    led.close();
+    closeSubsystem(led);
   }
 }

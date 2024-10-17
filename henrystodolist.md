@@ -27,5 +27,11 @@ scheduling
     - connect everything up
     - tests
     - fixes
+- 10/12/2024 - fix stuff from review
+    - need to add better constants
+    - could try using sysid with simulated values
+    - test value delta should be smaller
+    - use parallel structure for constructor
+    - small fixes
 
 `*realism not guarenteed`

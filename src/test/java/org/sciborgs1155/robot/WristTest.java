@@ -2,12 +2,12 @@ package org.sciborgs1155.robot;
 
 import static edu.wpi.first.units.Units.Radians;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.sciborgs1155.lib.TestingUtil.closeSubsystem;
 import static org.sciborgs1155.lib.TestingUtil.fastForward;
 import static org.sciborgs1155.lib.TestingUtil.run;
 import static org.sciborgs1155.robot.wrist.WristConstants.MAX_ANGLE;
 import static org.sciborgs1155.robot.wrist.WristConstants.MIN_ANGLE;
 
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,8 +33,6 @@ public class WristTest {
 
   @AfterEach
   public void afterEach() throws Exception {
-    CommandScheduler.getInstance().unregisterAllSubsystems();
-    CommandScheduler.getInstance().cancelAll();
-    wrist.close();
+    closeSubsystem(wrist);
   }
 }

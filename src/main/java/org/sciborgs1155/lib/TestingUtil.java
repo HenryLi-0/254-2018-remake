@@ -51,6 +51,7 @@ public class TestingUtil {
   public static <TestableSubsystem extends Subsystem & AutoCloseable> void closeSubsystem(
       TestableSubsystem subsystem) throws Exception {
     CommandScheduler.getInstance().unregisterSubsystem(subsystem);
+    CommandScheduler.getInstance().cancelAll();
     subsystem.close();
   }
 

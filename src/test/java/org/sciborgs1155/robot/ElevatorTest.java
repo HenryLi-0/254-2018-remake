@@ -6,7 +6,6 @@ import static org.sciborgs1155.lib.TestingUtil.*;
 import static org.sciborgs1155.robot.elevator.ElevatorConstants.MAX_HEIGHT;
 import static org.sciborgs1155.robot.elevator.ElevatorConstants.MIN_HEIGHT;
 
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,10 +25,10 @@ public class ElevatorTest {
   public void testMinMax() {
     run(elevator.goToMax());
     fastForward();
-    assertEquals(MAX_HEIGHT.in(Meters), elevator.getPosition(), 0.1);
+    assertEquals(MAX_HEIGHT.in(Meters), elevator.getPosition(), 0.01);
     run(elevator.goToMin());
     fastForward();
-    assertEquals(MIN_HEIGHT.in(Meters), elevator.getPosition(), 0.1);
+    assertEquals(MIN_HEIGHT.in(Meters), elevator.getPosition(), 0.01);
   }
 
   @ParameterizedTest
@@ -40,13 +39,11 @@ public class ElevatorTest {
     assertEquals(
         MIN_HEIGHT.in(Meters) + p * (MAX_HEIGHT.in(Meters) - MIN_HEIGHT.in(Meters)),
         elevator.getPosition(),
-        0.1);
+        0.01);
   }
 
   @AfterEach
   public void afterEach() throws Exception {
-    CommandScheduler.getInstance().unregisterAllSubsystems();
-    CommandScheduler.getInstance().cancelAll();
-    elevator.close();
+    closeSubsystem(elevator);
   }
 }
